@@ -1,0 +1,27 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Sensirion SHT31 Smart Humigadget",
+        "description": "Skonfiguruj urządzenie Sensirion SHT31 Smart Humigadget przez Bluetooth LE.",
+        "data": {
+          "mac": "Adres MAC Bluetooth",
+          "name": "Nazwa urządzenia"
+        }
+      },
+      "bluetooth_confirm": {
+        "title": "Wykryto Sensirion SHT31",
+        "description": "Czy chcesz dodać wykryty czujnik Sensirion Smart Humigadget ({name}) o adresie MAC {address}?",
+        "data": {
+          "name": "Nazwa urządzenia"
+        }
+      }
+    },
+    "error": {
+      "invalid_mac": "Nieprawidłowy format adresu MAC Bluetooth (np. AA:BB:CC:DD:EE:FF)."
+    },
+    "abort": {
+      "already_configured": "To urządzenie jest już dodane do Home Assistant."
+    }
+  }
+}

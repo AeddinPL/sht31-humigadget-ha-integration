@@ -1,0 +1,21 @@
+{
+  "domain": "sht31_humigadget",
+  "name": "Sensirion SHT31 Smart Humigadget",
+  "codeowners": [
+    "@AeddinPL"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/AeddinPL/sht31-humigadget-homeassistant",
+  "issue_tracker": "https://github.com/AeddinPL/sht31-humigadget-homeassistant/issues",
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "version": "1.0.0",
+  "dependencies": [
+    "bluetooth"
+  ],
+  "bluetooth": [
+    {
+      "local_name": "Smart Humigadget"
+    }
+  ]
+}
