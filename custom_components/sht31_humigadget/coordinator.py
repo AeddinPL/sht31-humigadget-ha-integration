@@ -1,4 +1,4 @@
-"""DataUpdateCoordinator for Sensirion SHT31 Smart Humigadget."""
+"""DataUpdateCoordinator for Sensirion SHT31 Smart Humigadget. """
 from __future__ import annotations
 
 import logging
