@@ -13,6 +13,7 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import (
     PERCENTAGE,
     EntityCategory,
+    UnitOfDensity,
     UnitOfTemperature,
 )
 from homeassistant.core import HomeAssistant
@@ -36,6 +37,27 @@ SENSOR_TYPES: tuple[SensorEntityDescription, ...] = (
         name="Humidity",
         native_unit_of_measurement=PERCENTAGE,
         device_class=SensorDeviceClass.HUMIDITY,
+        state_class=SensorStateClass.MEASUREMENT,
+    ),
+    SensorEntityDescription(
+        key="dew_point",
+        name="Dew point",
+        native_unit_of_measurement=UnitOfTemperature.CELSIUS,
+        device_class=SensorDeviceClass.TEMPERATURE,
+        state_class=SensorStateClass.MEASUREMENT,
+    ),
+    SensorEntityDescription(
+        key="absolute_humidity",
+        name="Absolute humidity",
+        native_unit_of_measurement=UnitOfDensity.GRAMS_PER_CUBIC_METER,
+        device_class=SensorDeviceClass.ABSOLUTE_HUMIDITY,
+        state_class=SensorStateClass.MEASUREMENT,
+    ),
+    SensorEntityDescription(
+        key="heat_index",
+        name="Heat index",
+        native_unit_of_measurement=UnitOfTemperature.CELSIUS,
+        device_class=SensorDeviceClass.TEMPERATURE,
         state_class=SensorStateClass.MEASUREMENT,
     ),
     SensorEntityDescription(

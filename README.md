@@ -1,7 +1,7 @@
 # Sensirion SHT31 Smart Humigadget for Home Assistant
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/default)
-[![GitHub release](https://img.shields.io/github/v/release/AeddinPL/sht31-humigadget-homeassistant?include_prereleases)](https://github.com/AeddinPL/sht31-humigadget-homeassistant/releases)
+[![GitHub release](https://img.shields.io/github/v/release/AeddinPL/sht31-humigadget-ha-integration?include_prereleases)](https://github.com/AeddinPL/sht31-humigadget-ha-integration/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Niestandardowa integracja (Custom Component) dla **Home Assistant** umożliwiająca odczyt danych z czujnika **Sensirion SHT31 Smart Humigadget** za pośrednictwem Bluetooth Low Energy (BLE GATT).
