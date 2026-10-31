@@ -59,7 +59,7 @@ This custom integration enables full GATT reading for the SHT31 Smart Humigadget
 
 ### Metoda 2: Ręczna instalacja / Manual Installation
 
-1. Pobierz archiwum ZIP tego repozytorium z zakładki [Releases](https://github.com/AeddinPL/sht31-humigadget-homeassistant/releases).
+1. Pobierz archiwum ZIP tego repozytorium z zakładki [Releases](https://github.com/AeddinPL/sht31-humigadget-ha-integration/releases).
 2. Skopiuj folder `custom_components/sht31_humigadget/` do katalogu konfiguracji Twojego Home Assistant:
    ```
    /config/custom_components/sht31_humigadget/
