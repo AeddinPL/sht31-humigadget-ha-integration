@@ -2,8 +2,8 @@
   "config": {
     "step": {
       "user": {
-        "title": "Sensirion SHT31 Smart Humigadget",
-        "description": "Skonfiguruj urządzenie Sensirion SHT31 Smart Humigadget przez Bluetooth LE.",
+        "title": "Sensirion SHT31 Smart Gadget",
+        "description": "Skonfiguruj urządzenie Sensirion SHT31 Smart Gadget przez Bluetooth LE.",
         "data": {
           "mac": "Adres MAC Bluetooth",
           "name": "Nazwa urządzenia"
@@ -11,7 +11,7 @@
       },
       "bluetooth_confirm": {
         "title": "Wykryto Sensirion SHT31",
-        "description": "Czy chcesz dodać wykryty czujnik Sensirion Smart Humigadget ({name}) o adresie MAC {address}?",
+        "description": "Czy chcesz dodać wykryty czujnik Sensirion Smart Gadget ({name}) o adresie MAC {address}?",
         "data": {
           "name": "Nazwa urządzenia"
         }

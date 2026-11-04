@@ -1,4 +1,4 @@
-"""DataUpdateCoordinator for Sensirion SHT31 Smart Humigadget. """
+"""DataUpdateCoordinator for Sensirion SHT31 Smart Gadget. """
 from __future__ import annotations
 
 import logging
@@ -78,7 +78,7 @@ def _calculate_derived_values(temperature: float, humidity: float) -> dict[str, 
 
 
 class SHT31Coordinator(DataUpdateCoordinator[dict[str, Any]]):
-    """Coordinator to manage polling data from Sensirion SHT31 Smart Humigadget."""
+    """Coordinator to manage polling data from Sensirion SHT31 Smart Gadget."""
 
     def __init__(self, hass: HomeAssistant, address: str, name: str, scan_interval: int = DEFAULT_SCAN_INTERVAL) -> None:
         """Initialize the coordinator."""

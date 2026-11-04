@@ -1,7 +1,7 @@
-"""Constants for Sensirion SHT31 Smart Humigadget integration."""
+"""Constants for Sensirion SHT31 Smart Gadget integration."""
 
 DOMAIN = "sht31_humigadget"
-DEFAULT_NAME = "Smart Humigadget SHT31"
+DEFAULT_NAME = "SHT31 Smart Gadget"
 DEFAULT_SCAN_INTERVAL = 60
 
 CONF_MAC = "mac"

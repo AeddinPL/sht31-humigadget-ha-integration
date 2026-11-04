@@ -1,4 +1,4 @@
-# Sensirion SHT31 Smart Humigadget for Home Assistant
+# Sensirion SHT31 Smart Gadget for Home Assistant
 
 [![HACS Custom](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://hacs.xyz/)
 [![GitHub release](https://img.shields.io/github/v/release/AeddinPL/sht31-humigadget-ha-integration?include_prereleases)](https://github.com/AeddinPL/sht31-humigadget-ha-integration/releases)

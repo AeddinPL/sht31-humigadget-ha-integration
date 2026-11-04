@@ -1,4 +1,4 @@
-"""Sensirion SHT31 Smart Humigadget integration."""
+"""Sensirion SHT31 Smart Gadget integration."""
 from __future__ import annotations
 
 import logging
@@ -16,7 +16,7 @@ PLATFORMS: list[Platform] = [Platform.SENSOR]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Set up Sensirion SHT31 Smart Humigadget from a config entry."""
+    """Set up Sensirion SHT31 Smart Gadget from a config entry."""
     hass.data.setdefault(DOMAIN, {})
 
     mac = entry.data[CONF_MAC]

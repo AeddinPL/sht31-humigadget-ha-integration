@@ -1,4 +1,4 @@
-"""Sensor platform for Sensirion SHT31 Smart Humigadget."""
+"""Sensor platform for Sensirion SHT31 SmartGadget."""
 from __future__ import annotations
 
 from typing import Any
@@ -75,7 +75,7 @@ async def async_setup_entry(
     entry: ConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
-    """Set up the SHT31 Humigadget sensors from config entry."""
+    """Set up the SHT31 Gadget sensors from config entry."""
     coordinator: SHT31Coordinator = hass.data[DOMAIN][entry.entry_id]
     mac = entry.data[CONF_MAC]
     device_name = entry.data.get(CONF_NAME, "SHT31")
@@ -89,7 +89,7 @@ async def async_setup_entry(
 
 
 class SHT31Sensor(CoordinatorEntity[SHT31Coordinator], SensorEntity):
-    """Representation of an SHT31 Humigadget Sensor."""
+    """Representation of an SHT31 Gadget Sensor."""
 
     _attr_has_entity_name = True
 
@@ -110,7 +110,7 @@ class SHT31Sensor(CoordinatorEntity[SHT31Coordinator], SensorEntity):
             identifiers={(DOMAIN, mac)},
             name=device_name,
             manufacturer="Sensirion",
-            model="SHT31 Smart Humigadget",
+            model="SHT31 Smart Gadget",
         )
 
     @property

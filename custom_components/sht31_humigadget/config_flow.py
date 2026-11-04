@@ -1,4 +1,4 @@
-"""Config flow for Sensirion SHT31 Smart Humigadget integration."""
+"""Config flow for Sensirion SHT31 Smart Gadget integration."""
 from __future__ import annotations
 
 import re
@@ -14,7 +14,7 @@ MAC_REGEX = re.compile(r"^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$")
 
 
 class SHT31ConfigFlow(ConfigFlow, domain=DOMAIN):
-    """Handle a config flow for Sensirion SHT31 Smart Humigadget."""
+    """Handle a config flow for Sensirion SHT31 Smart Gadget."""
 
     VERSION = 1
 

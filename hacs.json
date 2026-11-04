@@ -1,5 +1,5 @@
 {
-  "name": "Sensirion SHT31 Smart Humigadget",
+  "name": "Sensirion SHT31 Smart Gadget",
   "render_readme": true,
   "homeassistant": "2023.1.0"
 }
