@@ -1,23 +1,24 @@
+
 {
   "domain": "sht31_humigadget",
   "name": "Sensirion SHT31 Smart Humigadget",
-  "codeowners": [
-    "@AeddinPL"
-  ],
-  "config_flow": true,
-  "documentation": "https://github.com/AeddinPL/sht31-humigadget-ha-integration",
-  "issue_tracker": "https://github.com/AeddinPL/sht31-humigadget-ha-integration/issues",
-  "integration_type": "device",
-  "iot_class": "local_polling",
-  "version": "1.0.0",
-  "requirements": [],
-  "dependencies": [
-    "bluetooth"
-  ],
   "bluetooth": [
     {
       "local_name": "Smart Humigadget"
     }
-  ]
+  ],
+  "codeowners": [
+    "@AeddinPL"
+  ],
+  "config_flow": true,
+  "dependencies": [
+    "bluetooth_adapters"
+  ],
+  "documentation": "https://github.com/AeddinPL/sht31-humigadget-ha-integration",
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/AeddinPL/sht31-humigadget-ha-integration/issues",
+  "requirements": [],
+  "version": "1.0.0"
 }
 
