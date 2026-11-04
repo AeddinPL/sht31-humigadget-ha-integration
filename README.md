@@ -4,11 +4,20 @@
 [![GitHub release](https://img.shields.io/github/v/release/AeddinPL/sht31-humigadget-ha-integration?include_prereleases)](https://github.com/AeddinPL/sht31-humigadget-ha-integration/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A custom Home Assistant integration for the **Sensirion SHT31 Smart Humigadget**. It reads sensor data over Bluetooth Low Energy (BLE) using an active GATT connection.
+
+A custom Home Assistant integration for the **Sensirion SHT31 Smart Gadget (BLE: Smart Humigadget)**. 
+It reads sensor data over Bluetooth Low Energy (BLE) using an active GATT connection. This integration was initially developed for personal use and has not been extensively tested across different hardware configurations.
+[https://sensirion.com/products/catalog/SHT31-Smart-Gadget](https://sensirion.com/products/catalog/SHT31-Smart-Gadget)
+
+<p align="center">
+  <img src="images/sensirion_sht31_smart_gadget.webp"
+       alt="Sensirion SHT31 Smart Gadget"
+       width="400">
+</p>
 
 ## Why this integration?
 
-The older SHT31 Smart Humigadget does not include its measurements in BLE advertisement packets. It advertises basic discovery information and the local name `Smart Humigadget`, but temperature and humidity must be read through a GATT connection.
+The older SHT31 Smart Gadget does not include its measurements in BLE advertisement packets. It advertises basic discovery information and the local name `Smart Humigadget`, but temperature and humidity must be read through a GATT connection.
 
 This integration connects to the device, reads its measurements and battery level, and disconnects after each update. This avoids keeping a BLE connection open between polls.
 
@@ -45,7 +54,7 @@ The integration supports Home Assistant's Bluetooth integration, including local
 4. Add this repository:
    `https://github.com/AeddinPL/sht31-humigadget-ha-integration`
 5. Select **Integration** as the category and add the repository.
-6. Find **Sensirion SHT31 Smart Humigadget** and download it.
+6. Find **Sensirion SHT31 Smart Gadget** and download it.
 7. Restart Home Assistant.
 
 ### Manual installation
@@ -67,15 +76,21 @@ If Home Assistant's Bluetooth integration can detect the device, the integration
 
 1. Go to **Settings → Devices & services**.
 2. Select **Add integration**.
-3. Search for **Sensirion SHT31 Smart Humigadget**.
+3. Search for **Sensirion SHT31 Smart Gadget**.
 4. Enter the sensor's Bluetooth MAC address (for example, `F3:15:B7:5E:61:C2`). You can also provide an optional device name.
 5. Submit the configuration.
+   
+## Sensirion SHT31 Smart Gadget documentation
+
+[User Guide](https://sensirion.com/media/documents/429F0DF6/61643DC1/Sensirion_Humidity_Sensors_SHT3x_Smart-Gadget_User-Guide_1.pdf)
+[Software](https://github.com/Sensirion/SmartGadget-Firmware/tree/master)
+[Hardware](https://github.com/Sensirion/SmartGadget-Hardware)
 
 ## Troubleshooting
 
 **The sensor is not discovered or the connection fails:**
 
-- Make sure Bluetooth is enabled on the Humigadget. The Bluetooth symbol should be visible on its display. If it is not, press and hold the button on the device for approximately two seconds.
+- Make sure Bluetooth is enabled on the SHT31 Smart Gadget. The Bluetooth symbol should be visible on its display. If it is not, press and hold the button on the device for approximately two seconds.
 - Close the Sensirion MyAmbience app or disconnect the phone from the sensor. The device may not accept another connection while the phone is connected.
 - Check the CR2032 battery. A weak battery can cause connection problems.
 - Move the sensor closer to the Home Assistant Bluetooth adapter or Bluetooth Proxy during setup and testing.

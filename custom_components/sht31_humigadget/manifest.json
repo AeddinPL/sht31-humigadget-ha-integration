@@ -1,7 +1,7 @@
 
 {
   "domain": "sht31_humigadget",
-  "name": "Sensirion SHT31 Smart Humigadget",
+  "name": "Sensirion SHT31 Smart Gadget",
   "bluetooth": [
     {
       "local_name": "Smart Humigadget"
