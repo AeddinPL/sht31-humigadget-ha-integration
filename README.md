@@ -1,111 +1,85 @@
 # Sensirion SHT31 Smart Humigadget for Home Assistant
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/default)
+[![HACS Custom](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://hacs.xyz/)
 [![GitHub release](https://img.shields.io/github/v/release/AeddinPL/sht31-humigadget-ha-integration?include_prereleases)](https://github.com/AeddinPL/sht31-humigadget-ha-integration/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Niestandardowa integracja (Custom Component) dla **Home Assistant** umożliwiająca odczyt danych z czujnika **Sensirion SHT31 Smart Humigadget** za pośrednictwem Bluetooth Low Energy (BLE GATT).
+A custom Home Assistant integration for the **Sensirion SHT31 Smart Humigadget**. It reads sensor data over Bluetooth Low Energy (BLE) using an active GATT connection.
 
----
+## Why this integration?
 
-## 🧐 Dlaczego ta integracja? / Why this integration?
+The older SHT31 Smart Humigadget does not include its measurements in BLE advertisement packets. It advertises basic discovery information and the local name `Smart Humigadget`, but temperature and humidity must be read through a GATT connection.
 
-### [PL]
-Oficjalna, wbudowana w Home Assistant integracja `Sensirion BLE` obsługuje wyłącznie urządzenia nadające dane w trybie pasywnym (*BLE Advertisements*, takie jak nowsze gadżety *SHT4x* czy *MyCO2*). 
+This integration connects to the device, reads its measurements and battery level, and disconnects after each update. This avoids keeping a BLE connection open between polls.
 
-Starszy **Sensirion SHT31 Smart Humigadget** **nie rozgłasza** wartości pomiarowych w pakietach radiowych — wysyła jedynie minimalną ramkę rozgłoszeniową (`0x02 0x01 0x06`) i nazwę `Smart Humigadget`. Aby pobrać z niego temperaturę i wilgotność, wymagane jest **aktywne połączenie BLE GATT** i odczyt dedykowanych serwisów.
+## Features
 
-Ta integracja wypełnia tę lukę:
-- Łączy się bezpośrednio z sensorem SHT31 po Bluetooth.
-- Odczytuje temperaturę, wilgotność oraz stan baterii.
-- Natychmiast zwalnia połączenie po odczycie, gwarantując **długą żywotność baterii pastylkowej CR2032**.
+The integration creates the following sensors:
 
-### [EN]
-The official Home Assistant `Sensirion BLE` integration only supports devices broadcasting telemetry in passive BLE advertisement frames (such as the *SHT4x Smart Gadget* or *MyCO2*).
+| Sensor | Unit | Description |
+| --- | --- | --- |
+| Temperature | °C | Temperature reported by the SHT31 |
+| Humidity | % | Relative humidity reported by the SHT31 |
+| Dew point | °C | Calculated from temperature and relative humidity |
+| Absolute humidity | g/m³ | Calculated water-vapour mass per cubic metre of air |
+| Heat index | °C | Calculated apparent temperature based on temperature and relative humidity |
+| Battery | % | Battery level; diagnostic entity |
 
-The older **Sensirion SHT31 Smart Humigadget** does **not** broadcast measurements in advertisement packets — it only broadcasts basic discovery flags (`0x02 0x01 0x06`) and the local name `Smart Humigadget`. Reading live temperature and humidity requires an **active BLE GATT connection**.
+Derived values are calculated locally from the temperature and relative humidity readings:
 
-This custom integration enables full GATT reading for the SHT31 Smart Humigadget while conserving the CR2032 coin-cell battery by disconnecting immediately after each poll.
+- **Dew point** and **absolute humidity** use Magnus-based humidity calculations.
+- **Heat index** uses a simplified estimate at lower temperatures and the NOAA regression, including its low- and high-humidity adjustments, when the calculated average reaches 26.7 °C.
+- Relative humidity is clamped to the 0–100% range for these calculations. Derived values are rounded to two decimal places.
 
----
+The battery reading is optional. If it cannot be read, the other sensor values can still be updated.
 
-## ✨ Funkcje / Features
+The integration supports Home Assistant's Bluetooth integration, including local Bluetooth adapters and ESPHome Bluetooth Proxies.
 
-* 🌡️ **Temperatura** (°C) – 32-bitowy format zmiennoprzecinkowy IEEE 754.
-* 💧 **Wilgotność** (%RH) – 32-bitowy format zmiennoprzecinkowy IEEE 754.
-* 🔋 **Poziom baterii** (%) – z kategorii diagnostycznej Home Assistant.
-* 🔍 **Automatyczne wykrywanie (Bluetooth Discovery)** – Home Assistant automatycznie powiadomi Cię o znalezieniu czujnika w pobliżu.
-* ⚡ **Optymalizacja baterii** – krótkie cykliczne połączenie co 60 sekund i natychmiastowe rozłączenie.
-* 📡 **Wsparcie dla Bluetooth Proxy** – działa zarówno z lokalnym adapterem USB w HA (np. w Proxmox/Raspberry Pi), jak i zdalnymi bramkami **ESPHome Bluetooth Proxy**.
+## Installation
 
----
+### HACS (recommended)
 
-## 📦 Instalacja / Installation
+1. Make sure [HACS](https://hacs.xyz/) is installed.
+2. Open **HACS → Integrations**.
+3. Open the menu in the top-right corner and select **Custom repositories**.
+4. Add this repository:
+   `https://github.com/AeddinPL/sht31-humigadget-ha-integration`
+5. Select **Integration** as the category and add the repository.
+6. Find **Sensirion SHT31 Smart Humigadget** and download it.
+7. Restart Home Assistant.
 
-### Metoda 1: HACS (Zalecana / Recommended)
+### Manual installation
 
-1. Upewnij się, że masz zainstalowany [HACS](https://hacs.xyz/).
-2. W Home Assistant przejdź do **HACS** → **Integracje** (*Integrations*).
-3. Kliknij ikonę trzech kropek w prawym górnym rogu i wybierz **Niestandardowe repozytoria** (*Custom repositories*).
-4. Wklej URL tego repozytorium GitHub:
-   ```
-   https://github.com/AeddinPL/sht31-humigadget-homeassistant
-   ```
-5. Wybierz kategorię: **Integracja** (*Integration*) i kliknij **Dodaj** (*Add*).
-6. Znajdź **Sensirion SHT31 Smart Humigadget** i kliknij **Pobierz** (*Download*).
-7. Zrestartuj Home Assistant.
-
----
-
-### Metoda 2: Ręczna instalacja / Manual Installation
-
-1. Pobierz archiwum ZIP tego repozytorium z zakładki [Releases](https://github.com/AeddinPL/sht31-humigadget-ha-integration/releases).
-2. Skopiuj folder `custom_components/sht31_humigadget/` do katalogu konfiguracji Twojego Home Assistant:
-   ```
+1. Download the ZIP archive from the [GitHub Releases](https://github.com/AeddinPL/sht31-humigadget-ha-integration/releases) page.
+2. Copy `custom_components/sht31_humigadget/` into the `custom_components` directory of your Home Assistant configuration:
+   ```text
    /config/custom_components/sht31_humigadget/
    ```
-3. Zrestartuj Home Assistant:
-   * **Ustawienia** → **System** → **Uruchom ponownie** (lub *Narzędzia deweloperskie* → *Zrestartuj*).
+3. Restart Home Assistant.
 
----
+## Configuration
 
-## ⚙️ Konfiguracja / Configuration
+### Automatic discovery
 
-### Automatyczne wykrycie (Auto-Discovery)
-Jeśli Bluetooth w Twoim Home Assistant działa i słyszy sensor, w sekcji **Ustawienia** → **Urządzenia oraz usługi** pojawi się kafelek z powiadomieniem o wykryciu czujnika **Smart Humigadget**. Wystarczy kliknąć **Konfiguruj** (*Configure*) i potwierdzić.
+If Home Assistant's Bluetooth integration can detect the device, the integration will appear under **Settings → Devices & services**. Select **Configure** and follow the setup flow.
 
-### Dodanie ręczne
-1. Wejdź w **Ustawienia** (*Settings*) → **Urządzenia oraz usługi** (*Devices & Services*).
-2. Kliknij **Dodaj integrację** (*Add Integration*) w prawym dolnym rogu.
-3. Wyszukaj: **Sensirion SHT31 Smart Humigadget**.
-4. Wprowadź adres MAC czujnika Bluetooth (np. `F3:15:B7:5E:61:C2`) oraz opcjonalną nazwę urządzenia.
-5. Kliknij **Zatwierdź** (*Submit*).
+### Manual setup
 
----
+1. Go to **Settings → Devices & services**.
+2. Select **Add integration**.
+3. Search for **Sensirion SHT31 Smart Humigadget**.
+4. Enter the sensor's Bluetooth MAC address (for example, `F3:15:B7:5E:61:C2`). You can also provide an optional device name.
+5. Submit the configuration.
 
-## 🛠️ Dane techniczne GATT / Technical GATT Details
+## Troubleshooting
 
-Dla celów referencyjnych, czujnik Sensirion SHT31 Smart Humigadget korzysta z następujących serwisów i cech GATT:
+**The sensor is not discovered or the connection fails:**
 
-| Sensor | Service UUID | Characteristic UUID | Format |
-| :--- | :--- | :--- | :--- |
-| **Temperatura** | `00002234-b38d-4985-720e-0f993a68ee41` | `00002235-b38d-4985-720e-0f993a68ee41` | Float32 Little-Endian (°C) |
-| **Wilgotność** | `00001234-b38d-4985-720e-0f993a68ee41` | `00001235-b38d-4985-720e-0f993a68ee41` | Float32 Little-Endian (%RH) |
-| **Bateria** | `0000180f-0000-1000-8000-00805f9b34fb` | `00002a19-0000-1000-8000-00805f9b34fb` | uint8 (0–100%) |
+- Make sure Bluetooth is enabled on the Humigadget. The Bluetooth symbol should be visible on its display. If it is not, press and hold the button on the device for approximately two seconds.
+- Close the Sensirion MyAmbience app or disconnect the phone from the sensor. The device may not accept another connection while the phone is connected.
+- Check the CR2032 battery. A weak battery can cause connection problems.
+- Move the sensor closer to the Home Assistant Bluetooth adapter or Bluetooth Proxy during setup and testing.
 
----
+## License
 
-## ❓ Rozwiązywanie problemów / Troubleshooting
-
-* **Sensor nie jest wykrywany / Błąd połączenia:**
-  * Upewnij się, że Bluetooth w gadżecie jest włączony (symbol Bluetooth widoczny na wyświetlaczu LCD). Jeśli go nie ma, przytrzymaj przycisk na płytce przez 2 sekundy.
-  * Upewnij się, że aplikacja na telefonie (*Sensirion MyAmbience*) jest wyłączona – dopóki telefon utrzymuje aktywne połączenie, żadne inne urządzenie nie połączy się z gadżetem.
-  * Sprawdź baterię CR2032 – słaba bateria może uniemożliwić nawiązanie stabilnego połączenia radiowego.
-  * Zbliż czujnik na czas parowania do odbiornika Bluetooth w Home Assistant.
-
----
-
-## 📄 Licencja / License
-
-Projekt udostępniany na zasadach licencji [MIT](LICENSE).
-
+This project is licensed under the [MIT License](LICENSE).
