@@ -1,0 +1,26 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build & Upload Release Asset
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Package integration
+        run: |
+          cd custom_components
+          zip -r ../sht31_humigadget.zip sht31_humigadget
+
+      - name: Upload zip to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: sht31_humigadget.zip

@@ -7,6 +7,9 @@
         "data": {
           "mac": "Bluetooth MAC Address",
           "name": "Device Name"
+        },
+        "data_description": {
+          "mac": "The 12-character MAC address (e.g. AA:BB:CC:DD:EE:FF)"
         }
       },
       "bluetooth_confirm": {

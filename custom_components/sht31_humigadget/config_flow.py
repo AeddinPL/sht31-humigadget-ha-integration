@@ -90,7 +90,7 @@ class SHT31ConfigFlow(ConfigFlow, domain=DOMAIN):
 
         schema = vol.Schema(
             {
-                vol.Required(CONF_MAC, default="F3:15:B7:5E:61:C2"): str,
+                vol.Required(CONF_MAC): str,
                 vol.Optional(CONF_NAME, default=DEFAULT_NAME): str,
             }
         )
