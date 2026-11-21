@@ -18,11 +18,12 @@ jobs:
 
       - name: Package integration
         run: |
-          cd custom_components
-          zip -r ../sht31_humigadget.zip sht31_humigadget
+          cd custom_components/sht31_humigadget
+          zip -r ../../sht31_humigadget.zip .
 
       - name: Create GitHub Release and Upload Assets
         uses: softprops/action-gh-release@v2
         with:
           files: sht31_humigadget.zip
           generate_release_notes: true
+          prerelease: false
